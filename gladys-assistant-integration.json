@@ -1,0 +1,670 @@
+{
+  "manifest_version": 1,
+  "type": "ai",
+  "name": "Groq",
+  "description": {
+    "en": "Run the Gladys assistant on Groq: very fast open models (GPT-OSS, Qwen) with your API key.",
+    "fr": "L’assistant Gladys sur Groq : des modèles ouverts très rapides (GPT-OSS, Qwen) avec votre clé.",
+    "de": "Der Gladys-Assistent auf Groq: sehr schnelle offene Modelle (GPT-OSS, Qwen) mit deinem Schlüssel.",
+    "es": "El asistente de Gladys en Groq: modelos abiertos muy rápidos (GPT-OSS, Qwen) con su clave."
+  },
+  "version": "0.1.0",
+  "docker_image": "ghcr.io/william-de71/gladys-groq:0.1.0",
+  "gladys_version": ">=5.3.0",
+  "categories": ["assistants"],
+  "keywords": [
+    "openai",
+    "gpt-oss",
+    "qwen",
+    "llm",
+    "chatbot",
+    "lpu",
+    "fast",
+    "open-weight",
+    "ia",
+    "ki"
+  ],
+  "cover_image": "https://raw.githubusercontent.com/William-De71/gladys-groq/main/cover.jpg",
+  "transports": ["cloud"],
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "label": {
+        "en": "Getting started",
+        "fr": "Pour commencer",
+        "de": "Erste Schritte",
+        "es": "Primeros pasos"
+      },
+      "description": {
+        "en": "Groq runs open models (OpenAI GPT-OSS, Qwen) on its own LPU chips, several times faster than usual: the assistant answers almost at once, which suits voice. Create a free key on console.groq.com/keys, paste it below, then select this integration in Settings, Artificial Intelligence. Groq then sees every chat message, the history, the state of the devices the assistant reads and the chat images.",
+        "fr": "Groq fait tourner des modèles ouverts (OpenAI GPT-OSS, Qwen) sur ses propres puces LPU, plusieurs fois plus vite que d’habitude : l’assistant répond presque aussitôt, ce qui convient à la voix. Créez une clé gratuite sur console.groq.com/keys, collez-la ci-dessous, puis choisissez cette intégration dans Paramètres, Intelligence artificielle. Groq voit alors chaque message du chat, l’historique, l’état des appareils que l’assistant consulte et les images du chat.",
+        "de": "Groq betreibt offene Modelle (OpenAI GPT-OSS, Qwen) auf eigenen LPU-Chips, um ein Vielfaches schneller als üblich: Der Assistent antwortet fast sofort, was gut zur Sprachsteuerung passt. Erstelle einen kostenlosen Schlüssel auf console.groq.com/keys, füge ihn unten ein und wähle diese Integration dann unter Einstellungen, Künstliche Intelligenz. Groq sieht dann jede Chat-Nachricht, den Verlauf, den Zustand der Geräte, die der Assistent liest, und die Bilder des Chats.",
+        "es": "Groq ejecuta modelos abiertos (OpenAI GPT-OSS, Qwen) en sus propios chips LPU, varias veces más rápido de lo habitual: el asistente responde casi al instante, lo que conviene a la voz. Cree una clave gratuita en console.groq.com/keys, péguela abajo y luego elija esta integración en Ajustes, Inteligencia artificial. Groq verá entonces cada mensaje del chat, el historial, el estado de los dispositivos que consulta el asistente y las imágenes del chat."
+      },
+      "links": [
+        {
+          "url": "https://console.groq.com/keys",
+          "label": {
+            "en": "Groq API keys",
+            "fr": "Clés d’API Groq",
+            "de": "Groq-API-Schlüssel",
+            "es": "Claves de API de Groq"
+          }
+        },
+        {
+          "url": "https://console.groq.com/docs/models",
+          "label": {
+            "en": "The models and their prices",
+            "fr": "Les modèles et leurs prix",
+            "de": "Die Modelle und ihre Preise",
+            "es": "Los modelos y sus precios"
+          }
+        },
+        {
+          "url": "https://github.com/William-De71/gladys-groq/blob/main/docs/en.md",
+          "label": {
+            "en": "Integration documentation",
+            "fr": "Documentation de l’intégration",
+            "de": "Dokumentation der Integration",
+            "es": "Documentación de la integración"
+          }
+        }
+      ]
+    },
+    {
+      "key": "plan_info",
+      "type": "section",
+      "label": {
+        "en": "Free plan and limits",
+        "fr": "Offre gratuite et limites",
+        "de": "Kostenloser Tarif und Limits",
+        "es": "Plan gratuito y límites"
+      },
+      "description": {
+        "en": "The free plan needs no card but allows, per model, about 30 requests a minute, 1,000 a day and 8,000 tokens a minute: enough for a household, but a chat with many devices may go beyond the tokens of a minute. The Developer plan (pay as you go, a few cents a day for a household) raises the limits; a spending limit in Settings, Billing, Limits caps the bill. The exact limits of your organization are on console.groq.com/settings/limits.",
+        "fr": "L’offre gratuite ne demande pas de carte mais permet, par modèle, environ 30 requêtes par minute, 1 000 par jour et 8 000 jetons par minute : assez pour un foyer, mais un chat avec beaucoup d’appareils peut dépasser les jetons d’une minute. L’offre Developer (paiement à l’usage, quelques centimes par jour pour un foyer) relève les limites ; une limite de dépense dans Settings, Billing, Limits plafonne la facture. Les limites exactes de votre organisation sont sur console.groq.com/settings/limits.",
+        "de": "Der kostenlose Tarif braucht keine Karte, erlaubt aber pro Modell etwa 30 Anfragen pro Minute, 1.000 pro Tag und 8.000 Tokens pro Minute: genug für einen Haushalt, aber ein Chat mit vielen Geräten kann die Tokens einer Minute überschreiten. Der Developer-Tarif (Abrechnung nach Nutzung, einige Cent pro Tag für einen Haushalt) hebt die Limits an; ein Ausgabelimit unter Settings, Billing, Limits begrenzt die Rechnung. Die genauen Limits deiner Organisation stehen auf console.groq.com/settings/limits.",
+        "es": "El plan gratuito no pide tarjeta pero permite, por modelo, unas 30 solicitudes por minuto, 1000 al día y 8000 tokens por minuto: suficiente para un hogar, aunque un chat con muchos dispositivos puede superar los tokens de un minuto. El plan Developer (pago por uso, unos céntimos al día para un hogar) eleva los límites; un límite de gasto en Settings, Billing, Limits pone tope a la factura. Los límites exactos de su organización están en console.groq.com/settings/limits."
+      }
+    },
+    {
+      "key": "api_key",
+      "type": "secret",
+      "label": {
+        "en": "Groq API key",
+        "fr": "Clé d’API Groq",
+        "de": "Groq-API-Schlüssel",
+        "es": "Clave de API de Groq"
+      },
+      "description": {
+        "en": "Created on console.groq.com/keys (it starts with gsk_). It stays in Gladys and is never shown again nor logged.",
+        "fr": "Créée sur console.groq.com/keys (elle commence par gsk_). Elle reste dans Gladys, n’est plus jamais affichée ni journalisée.",
+        "de": "Erstellt auf console.groq.com/keys (er beginnt mit gsk_). Er bleibt in Gladys und wird nie wieder angezeigt oder protokolliert.",
+        "es": "Creada en console.groq.com/keys (empieza por gsk_). Se queda en Gladys y nunca se vuelve a mostrar ni se registra."
+      },
+      "required": true
+    },
+    {
+      "key": "model",
+      "type": "select",
+      "label": {
+        "en": "Chat model",
+        "fr": "Modèle du chat",
+        "de": "Chat-Modell",
+        "es": "Modelo del chat"
+      },
+      "description": {
+        "en": "Answers the chat, creates the scenes and writes the weekly digest. GPT-OSS 120B is the most capable; GPT-OSS 20B is twice as fast and half the price; Qwen 3.8 27B (preview) also reads the images of the chat.",
+        "fr": "Répond au chat, crée les scènes et rédige le résumé hebdomadaire. GPT-OSS 120B est le plus capable ; GPT-OSS 20B est deux fois plus rapide et deux fois moins cher ; Qwen 3.8 27B (préversion) lit aussi les images du chat.",
+        "de": "Beantwortet den Chat, erstellt die Szenen und schreibt den Wochenrückblick. GPT-OSS 120B ist am leistungsfähigsten; GPT-OSS 20B ist doppelt so schnell und halb so teuer; Qwen 3.8 27B (Vorschau) liest auch die Bilder des Chats.",
+        "es": "Responde al chat, crea las escenas y redacta el resumen semanal. GPT-OSS 120B es el más capaz; GPT-OSS 20B es el doble de rápido y cuesta la mitad; Qwen 3.8 27B (versión preliminar) también lee las imágenes del chat."
+      },
+      "required": true,
+      "default": "openai/gpt-oss-120b",
+      "options": [
+        {
+          "value": "openai/gpt-oss-120b",
+          "label": {
+            "en": "GPT-OSS 120B (recommended)",
+            "fr": "GPT-OSS 120B (recommandé)",
+            "de": "GPT-OSS 120B (empfohlen)",
+            "es": "GPT-OSS 120B (recomendado)"
+          }
+        },
+        {
+          "value": "openai/gpt-oss-20b",
+          "label": {
+            "en": "GPT-OSS 20B",
+            "fr": "GPT-OSS 20B",
+            "de": "GPT-OSS 20B",
+            "es": "GPT-OSS 20B"
+          }
+        },
+        {
+          "value": "qwen/qwen3.8-27b",
+          "label": {
+            "en": "Qwen 3.8 27B (reads images, preview)",
+            "fr": "Qwen 3.8 27B (lit les images, préversion)",
+            "de": "Qwen 3.8 27B (liest Bilder, Vorschau)",
+            "es": "Qwen 3.8 27B (lee imágenes, preliminar)"
+          }
+        },
+        {
+          "value": "custom",
+          "label": {
+            "en": "Other model (id below)",
+            "fr": "Autre modèle (identifiant ci-dessous)",
+            "de": "Anderes Modell (ID unten)",
+            "es": "Otro modelo (identificador abajo)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "fast_model",
+      "type": "select",
+      "label": {
+        "en": "Router model",
+        "fr": "Modèle du routeur",
+        "de": "Router-Modell",
+        "es": "Modelo del enrutador"
+      },
+      "description": {
+        "en": "Sorts every chat message before the answer, and must reply within 20 seconds: GPT-OSS 20B answers in well under a second.",
+        "fr": "Trie chaque message du chat avant la réponse, et doit répondre en moins de 20 secondes : GPT-OSS 20B répond en bien moins d’une seconde.",
+        "de": "Sortiert jede Chat-Nachricht vor der Antwort und muss innerhalb von 20 Sekunden antworten: GPT-OSS 20B antwortet in deutlich unter einer Sekunde.",
+        "es": "Clasifica cada mensaje del chat antes de la respuesta y debe responder en menos de 20 segundos: GPT-OSS 20B responde en mucho menos de un segundo."
+      },
+      "required": true,
+      "default": "openai/gpt-oss-20b",
+      "options": [
+        {
+          "value": "openai/gpt-oss-20b",
+          "label": {
+            "en": "GPT-OSS 20B (recommended)",
+            "fr": "GPT-OSS 20B (recommandé)",
+            "de": "GPT-OSS 20B (empfohlen)",
+            "es": "GPT-OSS 20B (recomendado)"
+          }
+        },
+        {
+          "value": "openai/gpt-oss-120b",
+          "label": {
+            "en": "GPT-OSS 120B",
+            "fr": "GPT-OSS 120B",
+            "de": "GPT-OSS 120B",
+            "es": "GPT-OSS 120B"
+          }
+        },
+        {
+          "value": "qwen/qwen3.8-27b",
+          "label": {
+            "en": "Qwen 3.8 27B (preview)",
+            "fr": "Qwen 3.8 27B (préversion)",
+            "de": "Qwen 3.8 27B (Vorschau)",
+            "es": "Qwen 3.8 27B (preliminar)"
+          }
+        },
+        {
+          "value": "custom",
+          "label": {
+            "en": "Other model (id below)",
+            "fr": "Autre modèle (identifiant ci-dessous)",
+            "de": "Anderes Modell (ID unten)",
+            "es": "Otro modelo (identificador abajo)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "custom_model",
+      "type": "string",
+      "label": {
+        "en": "Other model id",
+        "fr": "Identifiant de l’autre modèle",
+        "de": "ID des anderen Modells",
+        "es": "Identificador del otro modelo"
+      },
+      "description": {
+        "en": "Only for “Other model”: the exact id from console.groq.com/docs/models, such as a newer model. It must support tool use.",
+        "fr": "Seulement pour « Autre modèle » : l’identifiant exact pris sur console.groq.com/docs/models, par exemple un modèle plus récent. Il doit savoir appeler des outils.",
+        "de": "Nur für „Anderes Modell“: die genaue ID von console.groq.com/docs/models, etwa ein neueres Modell. Es muss Werkzeuge unterstützen.",
+        "es": "Solo para «Otro modelo»: el identificador exacto de console.groq.com/docs/models, por ejemplo un modelo más reciente. Debe admitir herramientas."
+      },
+      "placeholder": {
+        "en": "openai/gpt-oss-120b",
+        "fr": "openai/gpt-oss-120b",
+        "de": "openai/gpt-oss-120b",
+        "es": "openai/gpt-oss-120b"
+      },
+      "required": false
+    },
+    {
+      "key": "reasoning",
+      "type": "select",
+      "label": {
+        "en": "Reasoning of the chat model",
+        "fr": "Réflexion du modèle du chat",
+        "de": "Nachdenken des Chat-Modells",
+        "es": "Razonamiento del modelo del chat"
+      },
+      "description": {
+        "en": "More reasoning gives better scenes but slower answers that use more tokens. GPT-OSS cannot turn reasoning off: “Off” gives it the low level.",
+        "fr": "Plus de réflexion donne de meilleures scènes mais des réponses plus lentes qui consomment plus de jetons. GPT-OSS ne peut pas la couper : « Désactivée » lui donne le niveau faible.",
+        "de": "Mehr Nachdenken ergibt bessere Szenen, aber langsamere Antworten, die mehr Tokens verbrauchen. GPT-OSS kann das Nachdenken nicht abschalten: „Aus“ ergibt bei ihm die niedrige Stufe.",
+        "es": "Más razonamiento da mejores escenas pero respuestas más lentas que consumen más tokens. GPT-OSS no puede desactivarlo: «Desactivado» le da el nivel bajo."
+      },
+      "required": true,
+      "default": "low",
+      "options": [
+        {
+          "value": "none",
+          "label": {
+            "en": "Off",
+            "fr": "Désactivée",
+            "de": "Aus",
+            "es": "Desactivado"
+          }
+        },
+        {
+          "value": "low",
+          "label": {
+            "en": "Low (recommended)",
+            "fr": "Faible (recommandé)",
+            "de": "Niedrig (empfohlen)",
+            "es": "Bajo (recomendado)"
+          }
+        },
+        {
+          "value": "medium",
+          "label": {
+            "en": "Medium",
+            "fr": "Moyenne",
+            "de": "Mittel",
+            "es": "Medio"
+          }
+        },
+        {
+          "value": "high",
+          "label": {
+            "en": "High",
+            "fr": "Élevée",
+            "de": "Hoch",
+            "es": "Alto"
+          }
+        }
+      ]
+    },
+    {
+      "key": "max_tokens",
+      "type": "number",
+      "label": {
+        "en": "Maximum answer length (tokens)",
+        "fr": "Longueur maximale d’une réponse (jetons)",
+        "de": "Maximale Antwortlänge (Tokens)",
+        "es": "Longitud máxima de una respuesta (tokens)"
+      },
+      "description": {
+        "en": "The reasoning counts in it too. On the free plan Groq counts it in the tokens of the minute: keep it low; raise it if the logs say an answer hit max_tokens.",
+        "fr": "La réflexion compte aussi dedans. Avec l’offre gratuite, Groq la compte dans les jetons de la minute : gardez-la basse ; augmentez-la si les journaux indiquent qu’une réponse a atteint max_tokens.",
+        "de": "Das Nachdenken zählt auch dazu. Im kostenlosen Tarif zählt Groq den Wert zu den Tokens der Minute: Halte ihn niedrig; erhöhe ihn, wenn die Protokolle melden, dass eine Antwort max_tokens erreicht hat.",
+        "es": "El razonamiento también cuenta. En el plan gratuito, Groq lo cuenta en los tokens del minuto: manténgala baja; auméntela si los registros indican que una respuesta alcanzó max_tokens."
+      },
+      "required": false,
+      "default": 4096,
+      "min": 1024,
+      "max": 32000
+    },
+    {
+      "key": "service_tier",
+      "type": "select",
+      "label": {
+        "en": "Service tier",
+        "fr": "Niveau de service",
+        "de": "Service-Stufe",
+        "es": "Nivel de servicio"
+      },
+      "description": {
+        "en": "On demand is Groq’s usual tier. Auto takes the best tier your organization has. Flex (paid plans) has much higher limits but a request fails at once when Groq is busy.",
+        "fr": "À la demande est le niveau habituel de Groq. Auto prend le meilleur niveau dont dispose votre organisation. Flex (offres payantes) a des limites bien plus hautes mais une requête échoue aussitôt quand Groq est chargé.",
+        "de": "Auf Abruf ist die übliche Stufe von Groq. Auto nimmt die beste Stufe, die deine Organisation hat. Flex (kostenpflichtige Tarife) hat viel höhere Limits, aber eine Anfrage scheitert sofort, wenn Groq ausgelastet ist.",
+        "es": "Bajo demanda es el nivel habitual de Groq. Auto toma el mejor nivel del que dispone su organización. Flex (planes de pago) tiene límites mucho más altos, pero una solicitud falla al momento cuando Groq está saturado."
+      },
+      "required": true,
+      "default": "on_demand",
+      "options": [
+        {
+          "value": "on_demand",
+          "label": {
+            "en": "On demand (recommended)",
+            "fr": "À la demande (recommandé)",
+            "de": "Auf Abruf (empfohlen)",
+            "es": "Bajo demanda (recomendado)"
+          }
+        },
+        {
+          "value": "auto",
+          "label": {
+            "en": "Auto",
+            "fr": "Auto",
+            "de": "Auto",
+            "es": "Auto"
+          }
+        },
+        {
+          "value": "flex",
+          "label": {
+            "en": "Flex (paid plans)",
+            "fr": "Flex (offres payantes)",
+            "de": "Flex (kostenpflichtige Tarife)",
+            "es": "Flex (planes de pago)"
+          }
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "key": "test_connection",
+      "timeout_seconds": 60,
+      "label": {
+        "en": "Test the connection",
+        "fr": "Tester la connexion",
+        "de": "Verbindung testen",
+        "es": "Probar la conexión"
+      },
+      "description": {
+        "en": "Asks each chosen model for a one-word answer and shows its time and the requests left today.",
+        "fr": "Demande une réponse d’un mot à chaque modèle choisi et affiche son temps et les requêtes restantes du jour.",
+        "de": "Bittet jedes gewählte Modell um eine Antwort aus einem Wort und zeigt seine Zeit und die heute verbleibenden Anfragen an.",
+        "es": "Pide una respuesta de una palabra a cada modelo elegido y muestra su tiempo y las solicitudes que quedan hoy."
+      }
+    }
+  ],
+  "widgets": [
+    {
+      "key": "usage",
+      "icon": "cpu",
+      "label": {
+        "en": "Groq usage",
+        "fr": "Conso Groq",
+        "de": "Groq-Verbrauch",
+        "es": "Consumo Groq"
+      },
+      "description": {
+        "en": "Requests and tokens of the assistant per day and month, requests left today, last error.",
+        "fr": "Requêtes et jetons de l’assistant par jour et par mois, requêtes restantes du jour, dernière erreur.",
+        "de": "Anfragen und Tokens des Assistenten pro Tag und Monat, heute verbleibende Anfragen, letzter Fehler.",
+        "es": "Solicitudes y tokens del asistente por día y mes, solicitudes que quedan hoy, último error."
+      }
+    }
+  ],
+  "scene_triggers": [
+    {
+      "key": "error",
+      "label": {
+        "en": "Groq: the assistant fails",
+        "fr": "Groq : l’assistant est en erreur",
+        "de": "Groq: Der Assistent hat einen Fehler",
+        "es": "Groq: el asistente falla"
+      },
+      "description": {
+        "en": "Groq stopped answering: key refused, spending limit, rate limit, request too large for the plan, model unavailable, API unreachable. Once per failure, not for every message.",
+        "fr": "Groq ne répond plus : clé refusée, limite de dépense, limite de requêtes, requête trop grosse pour l’offre, modèle indisponible, API injoignable. Une fois par panne, pas à chaque message.",
+        "de": "Groq antwortet nicht mehr: Schlüssel abgelehnt, Ausgabelimit, Anfragelimit, Anfrage zu groß für den Tarif, Modell nicht verfügbar, API nicht erreichbar. Einmal pro Ausfall, nicht bei jeder Nachricht.",
+        "es": "Groq dejó de responder: clave rechazada, límite de gasto, límite de solicitudes, solicitud demasiado grande para el plan, modelo no disponible, API inaccesible. Una vez por fallo, no en cada mensaje."
+      },
+      "fields": [
+        {
+          "key": "kind",
+          "type": "select",
+          "required": false,
+          "label": {
+            "en": "Only for",
+            "fr": "Seulement pour",
+            "de": "Nur bei",
+            "es": "Solo para"
+          },
+          "description": {
+            "en": "Leave empty for any failure.",
+            "fr": "Laissez vide pour toute panne.",
+            "de": "Leer lassen für jeden Ausfall.",
+            "es": "Déjelo vacío para cualquier fallo."
+          },
+          "options": [
+            {
+              "value": "auth",
+              "label": {
+                "en": "Key refused",
+                "fr": "Clé refusée",
+                "de": "Schlüssel abgelehnt",
+                "es": "Clave rechazada"
+              }
+            },
+            {
+              "value": "spend_limit",
+              "label": {
+                "en": "Spending limit reached",
+                "fr": "Limite de dépense atteinte",
+                "de": "Ausgabelimit erreicht",
+                "es": "Límite de gasto alcanzado"
+              }
+            },
+            {
+              "value": "rate_limit",
+              "label": {
+                "en": "Rate limit",
+                "fr": "Limite de requêtes",
+                "de": "Anfragelimit",
+                "es": "Límite de solicitudes"
+              }
+            },
+            {
+              "value": "too_large",
+              "label": {
+                "en": "Request too large for the plan",
+                "fr": "Requête trop grosse pour l’offre",
+                "de": "Anfrage zu groß für den Tarif",
+                "es": "Solicitud demasiado grande para el plan"
+              }
+            },
+            {
+              "value": "model",
+              "label": {
+                "en": "Model unavailable",
+                "fr": "Modèle indisponible",
+                "de": "Modell nicht verfügbar",
+                "es": "Modelo no disponible"
+              }
+            },
+            {
+              "value": "unreachable",
+              "label": {
+                "en": "API unreachable",
+                "fr": "API injoignable",
+                "de": "API nicht erreichbar",
+                "es": "API inaccesible"
+              }
+            },
+            {
+              "value": "timeout",
+              "label": {
+                "en": "Too slow",
+                "fr": "Trop lent",
+                "de": "Zu langsam",
+                "es": "Demasiado lento"
+              }
+            },
+            {
+              "value": "server",
+              "label": {
+                "en": "Groq error",
+                "fr": "Erreur de Groq",
+                "de": "Groq-Fehler",
+                "es": "Error de Groq"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "kind",
+          "type": "string",
+          "label": {
+            "en": "Kind of failure",
+            "fr": "Type de panne",
+            "de": "Art des Ausfalls",
+            "es": "Tipo de fallo"
+          }
+        },
+        {
+          "key": "message",
+          "type": "string",
+          "label": {
+            "en": "Error message",
+            "fr": "Message d’erreur",
+            "de": "Fehlermeldung",
+            "es": "Mensaje de error"
+          }
+        },
+        {
+          "key": "use",
+          "type": "string",
+          "label": {
+            "en": "Request (chat, router, digest, web)",
+            "fr": "Requête (chat, router, digest, web)",
+            "de": "Anfrage (chat, router, digest, web)",
+            "es": "Solicitud (chat, router, digest, web)"
+          }
+        },
+        {
+          "key": "model",
+          "type": "string",
+          "label": {
+            "en": "Model",
+            "fr": "Modèle",
+            "de": "Modell",
+            "es": "Modelo"
+          }
+        }
+      ]
+    },
+    {
+      "key": "recovered",
+      "label": {
+        "en": "Groq: the assistant answers again",
+        "fr": "Groq : l’assistant répond de nouveau",
+        "de": "Groq: Der Assistent antwortet wieder",
+        "es": "Groq: el asistente vuelve a responder"
+      },
+      "description": {
+        "en": "The first answer after a failure.",
+        "fr": "La première réponse après une panne.",
+        "de": "Die erste Antwort nach einem Ausfall.",
+        "es": "La primera respuesta tras un fallo."
+      },
+      "variables": [
+        {
+          "key": "down_minutes",
+          "type": "number",
+          "label": {
+            "en": "Minutes of failure",
+            "fr": "Minutes de panne",
+            "de": "Minuten des Ausfalls",
+            "es": "Minutos de fallo"
+          }
+        }
+      ]
+    }
+  ],
+  "scene_actions": [
+    {
+      "key": "web_search",
+      "timeout_seconds": 90,
+      "label": {
+        "en": "Groq: ask with web search",
+        "fr": "Groq : demander avec recherche web",
+        "de": "Groq: mit Websuche fragen",
+        "es": "Groq: preguntar con búsqueda web"
+      },
+      "description": {
+        "en": "GPT-OSS searches the web with Groq’s browser search and answers briefly: news, traffic, an event. The pages read count as tokens: on the free plan, one search may use a minute of tokens. Use the answer in a message or a spoken notification.",
+        "fr": "GPT-OSS cherche sur le web avec la recherche de Groq et répond brièvement : actualités, trafic, un événement. Les pages lues comptent en jetons : avec l’offre gratuite, une recherche peut consommer les jetons d’une minute. Utilisez la réponse dans un message ou une annonce vocale.",
+        "de": "GPT-OSS sucht mit der Browsersuche von Groq im Web und antwortet kurz: Nachrichten, Verkehr, ein Ereignis. Die gelesenen Seiten zählen als Tokens: Im kostenlosen Tarif kann eine Suche die Tokens einer Minute verbrauchen. Nutze die Antwort in einer Nachricht oder einer Sprachansage.",
+        "es": "GPT-OSS busca en la web con la búsqueda de Groq y responde brevemente: noticias, tráfico, un evento. Las páginas leídas cuentan como tokens: en el plan gratuito, una búsqueda puede gastar los tokens de un minuto. Use la respuesta en un mensaje o un aviso de voz."
+      },
+      "fields": [
+        {
+          "key": "question",
+          "type": "string",
+          "required": true,
+          "label": {
+            "en": "Question",
+            "fr": "Question",
+            "de": "Frage",
+            "es": "Pregunta"
+          },
+          "description": {
+            "en": "Scene variables are allowed.",
+            "fr": "Les variables de scène sont acceptées.",
+            "de": "Szenenvariablen sind erlaubt.",
+            "es": "Se admiten variables de escena."
+          },
+          "placeholder": {
+            "en": "What are the main news today in France?",
+            "fr": "Quelles sont les principales actualités du jour en France ?",
+            "de": "Was sind heute die wichtigsten Nachrichten in Deutschland?",
+            "es": "¿Cuáles son las principales noticias de hoy en España?"
+          }
+        },
+        {
+          "key": "instructions",
+          "type": "string",
+          "required": false,
+          "label": {
+            "en": "Extra instructions",
+            "fr": "Consignes en plus",
+            "de": "Zusätzliche Anweisungen",
+            "es": "Instrucciones adicionales"
+          },
+          "description": {
+            "en": "How to answer: length, tone, what to leave out.",
+            "fr": "Comment répondre : longueur, ton, ce qu’il faut laisser de côté.",
+            "de": "Wie geantwortet werden soll: Länge, Ton, was wegbleiben soll.",
+            "es": "Cómo responder: extensión, tono, qué omitir."
+          },
+          "placeholder": {
+            "en": "Three short sentences, no sport.",
+            "fr": "Trois phrases courtes, pas de sport.",
+            "de": "Drei kurze Sätze, kein Sport.",
+            "es": "Tres frases cortas, sin deportes."
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "key": "answer",
+          "type": "string",
+          "label": {
+            "en": "Answer",
+            "fr": "Réponse",
+            "de": "Antwort",
+            "es": "Respuesta"
+          }
+        },
+        {
+          "key": "sources",
+          "type": "string",
+          "label": {
+            "en": "Sources (one per line)",
+            "fr": "Sources (une par ligne)",
+            "de": "Quellen (eine pro Zeile)",
+            "es": "Fuentes (una por línea)"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "options": []
+    },
+    {
+      "key": "plan_info",
+      "type": "section",
+      "options": []
+    },
+    {
+      "key": "api_key",
+      "type": "secret",
+      "options": []
+    },
+    {
+      "key": "model",
+      "type": "select",
+      "options": ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "qwen/qwen3.8-27b", "custom"]
+    },
+    {
+      "key": "fast_model",
+      "type": "select",
+      "options": ["openai/gpt-oss-20b", "openai/gpt-oss-120b", "qwen/qwen3.8-27b", "custom"]
+    },
+    {
+      "key": "custom_model",
+      "type": "string",
+      "options": []
+    },
+    {
+      "key": "reasoning",
+      "type": "select",
+      "options": ["none", "low", "medium", "high"]
+    },
+    {
+      "key": "max_tokens",
+      "type": "number",
+      "options": []
+    },
+    {
+      "key": "service_tier",
+      "type": "select",
+      "options": ["on_demand", "auto", "flex"]
+    }
+  ],
+  "actions": ["test_connection"],
+  "widgets": [
+    {
+      "key": "usage",
+      "settings": []
+    }
+  ],
+  "scene_triggers": [
+    {
+      "key": "error",
+      "fields": [
+        {
+          "key": "kind",
+          "options": [
+            "auth",
+            "spend_limit",
+            "rate_limit",
+            "too_large",
+            "model",
+            "unreachable",
+            "timeout",
+            "server"
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "kind",
+          "type": "string"
+        },
+        {
+          "key": "message",
+          "type": "string"
+        },
+        {
+          "key": "use",
+          "type": "string"
+        },
+        {
+          "key": "model",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "key": "recovered",
+      "fields": [],
+      "variables": [
+        {
+          "key": "down_minutes",
+          "type": "number"
+        }
+      ]
+    }
+  ],
+  "scene_actions": [
+    {
+      "key": "web_search",
+      "fields": [
+        {
+          "key": "question",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "instructions",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "key": "answer",
+          "type": "string"
+        },
+        {
+          "key": "sources",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}
